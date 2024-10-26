@@ -1,0 +1,32 @@
+name: 'log-app'
+
+services:
+  backend:
+    build:
+      context: C:\Users\USUARIO\Documents\Development_Lab\clientes-citas-productos
+      dockerfile: dockerfile
+    restart: unless-stopped
+    env_file: 
+      - C:\Users\USUARIO\Documents\Development_Lab\clientes-citas-productos\.env
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongodb
+    environment:
+      MONGO_URL: mongodb+srv://usrAPPointment:lZOaaTh8is1NwNbO@appointment.h7wh8.mongodb.net/?retryWrites=true&w=majority&appName=APPointment
+
+  frontend:
+    build:
+      context: C:\Users\USUARIO\Documents\Development_Lab\front-CCP\log-ccp
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  mongodb:
+    image: mongo:latest
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/db
