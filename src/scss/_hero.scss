@@ -7,6 +7,9 @@
   position: relative;
   min-height: 100svh;
 
+  display: flex;
+  align-items: center;
+
   a.home-phone > i.bx:hover {
     transform: rotate(30deg);
   }
