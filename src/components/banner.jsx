@@ -15,7 +15,7 @@ export default function Banner() {
                 Nuestros técnicos expertos brindan soluciones de primer nivel
                 para todas sus necesidades automotrices. Desde cambio de llantas
                 hasta reparaciones completas de automóviles, confíe en nosotros
-                para obtener servicios confiables y certificados.-
+                para obtener servicios confiables y certificados.
               </p>
             </div>
             <div className="home-phone-container">
