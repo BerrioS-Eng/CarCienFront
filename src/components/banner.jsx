@@ -1,6 +1,6 @@
 export default function Banner() {
   return (
-    <section id="home" className="hero section">
+    <section id="home" className="font-sans hero section">
       <div className="background-overlay"></div>
       <div className="container">
         <div className="row g-0">

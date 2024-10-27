@@ -6,6 +6,9 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontFamily: {
+      sans: ["Montserrat", "ui-sans-serif", "system-ui"],
+    },
     extend: {
       colors: {
         background: "var(--background)",
