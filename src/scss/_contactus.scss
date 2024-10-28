@@ -1,7 +1,7 @@
 ///////////////
 // contact form
+@use "./variables" as v;
 .contact-form {
-
   & label {
     margin-bottom: 0.2rem;
     color: v.$primary;
@@ -30,16 +30,12 @@
 
 @media only screen and (max-width: 992px) {
   .contact-form {
-
     & input,
     & textarea {
       margin-bottom: 1rem;
     }
-    
   }
-  
 }
-
 
 ////////////////////////
 /// working hours widget
@@ -64,9 +60,7 @@
     & tbody > tr:nth-child(even) > td {
       background-color: v.$even-bg;
     }
-
   }
-
 }
 
 /////////////
@@ -89,4 +83,3 @@
     max-height: 400px !important;
   }
 }
-

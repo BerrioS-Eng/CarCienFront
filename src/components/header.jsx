@@ -1,10 +1,15 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Header() {
   const router = useRouter();
+  const [isHome, setIsHome] = useState(false);
+
+  useEffect(() => {
+    setIsHome(router.pathname === "/");
+  }, [router.pathname]);
 
   const handleScheduleClick = (e) => {
     e.preventDefault();
@@ -62,7 +67,7 @@ export default function Header() {
       });
     });
 
-    /* ## Add dark claass to the header and top link
+    /* ## Add dark class to the header and top link
     --------------------------------------------- */
     window.addEventListener("scroll", () => {
       if (window.scrollY >= 100) {
@@ -94,7 +99,7 @@ export default function Header() {
         let rect = v.getBoundingClientRect().y;
 
         if (rect < window.innerHeight - window.innerHeight + 100) {
-          /* caculate till section reaches to top */
+          /* calculate till section reaches to top */
           menuSection.forEach((v) => v.classList.remove("active"));
           menuSection[i].classList.add("active");
         }
@@ -103,7 +108,10 @@ export default function Header() {
   }, []);
 
   return (
-    <header id="header" className="site-header">
+    <header
+      id="header"
+      className={`site-header ${!isHome ? "scrolled-header" : ""}`}
+    >
       <div className="container">
         <div className="nav-flex">
           {/*  SITE LOGO  */}
