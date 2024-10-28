@@ -45,8 +45,6 @@ export default function Header() {
       } else {
         menuButton.setAttribute("aria-pressed", "true");
       }
-
-      // Show Main Navigation
     });
 
     // Collapse menu on click
@@ -111,6 +109,7 @@ export default function Header() {
     <header
       id="header"
       className={`site-header ${!isHome ? "scrolled-header" : ""}`}
+      style={isHome ? { backgroundColor: "transparent" } : {}}
     >
       <div className="container">
         <div className="nav-flex">

@@ -4,153 +4,61 @@ import { useEffect } from "react";
 
 export default function Schedule() {
   useEffect(() => {
-    // Store status
     function storeStatus() {
-      const timeZone = "America/New_York";
+      const timeZone = "America/Bogota";
       const now = new Date();
-      const localTime = new Date(
-        now.toLocaleString("en-US", {
-          timeZone: timeZone,
-        })
-      );
-      // Days ---------------------------
-      const options = { weekday: "long" };
-      const formattedTime = now.toLocaleTimeString("en-US", {
+
+      // Mostrar solo la hora local sin conversiones intermedias
+      const formattedTime = now.toLocaleTimeString("es-CO", {
         hour: "numeric",
         minute: "2-digit",
         hour12: true,
         timeZone: timeZone,
       });
-      const orangeCityDayToday = new Intl.DateTimeFormat(
-        "en-US",
-        options
-      ).format(localTime);
-      const outputDay = `${orangeCityDayToday} ${formattedTime}`;
-
-      // Time --------------------------
-      const hours = localTime.getHours();
-      const dayOfWeek = localTime.toLocaleString("en-US", {
-        timeZone,
+      const dayToday = now.toLocaleDateString("es-CO", {
         weekday: "long",
+        timeZone: timeZone,
       });
+      const outputDay = `${dayToday} ${formattedTime}`;
+
+      // Obtener hora y día
+      const hours = now.getHours();
+      const dayOfWeek = dayToday;
 
       let outputTime;
-      // Check if it's during opening hours
       if (
-        (dayOfWeek === "Sunday" && hours >= 9 && hours < 17) ||
-        (dayOfWeek !== "Sunday" && hours >= 8 && hours < 19)
-      )
+        (dayOfWeek === "domingo" && hours >= 9 && hours < 17) ||
+        (dayOfWeek !== "domingo" && hours >= 8 && hours < 19)
+      ) {
         outputTime =
-          '<span class="open text-success fw-bold">Open</span> come on down';
-      // Check if it's after closing hours but before midnight
-      else if (
-        (dayOfWeek === "Sunday" && hours >= 17 && hours < 24) ||
-        (dayOfWeek !== "Sunday" && hours >= 19 && hours < 24)
-      )
+          '<span class="open text-success fw-bold">Abierto</span> ven a visitarnos';
+      } else if (
+        (dayOfWeek === "domingo" && hours >= 17 && hours < 24) ||
+        (dayOfWeek !== "domingo" && hours >= 19 && hours < 24)
+      ) {
         outputTime =
-          '<span class="closed text-danger fw-bold">Closed</span> at the moment see you tomorrow. &#128578;';
-      // Check if it's before opening hours but after midnight
-      else if (hours >= 0 && (dayOfWeek === "Sunday" ? hours < 8 : hours < 9)) {
-        if (dayOfWeek === "Sunday" && hours < 8)
+          '<span class="closed text-danger fw-bold">Cerrado</span> en este momento, nos vemos mañana. &#128578;';
+      } else if (
+        hours >= 0 &&
+        (dayOfWeek === "domingo" ? hours < 8 : hours < 9)
+      ) {
+        if (dayOfWeek === "domingo" && hours < 8) {
           outputTime =
-            '<span class="closed text-danger fw-bold">Closed</span> at the moment see you at 08:00 AM. &#128564;';
-        else if (dayOfWeek !== "Sunday" && hours < 9)
+            '<span class="closed text-danger fw-bold">Cerrado</span> en este momento, nos vemos a las 08:00 AM. &#128564;';
+        } else if (dayOfWeek !== "domingo" && hours < 9) {
           outputTime =
-            '<span class="closed text-danger fw-bold">Closed</span> at the moment see you at 09:00 AM. &#128564;';
+            '<span class="closed text-danger fw-bold">Cerrado</span> en este momento, nos vemos a las 09:00 AM. &#128564;';
+        }
       }
 
-      return `It is ${outputDay}, We are ${outputTime}`;
+      return `Es ${outputDay}, Estamos ${outputTime}`;
     }
 
     function updateStatusRealtime() {
-      document.getElementById("storestatus").innerHTML = `${storeStatus()}`;
+      document.getElementById("storestatus").innerHTML = storeStatus();
     }
     updateStatusRealtime();
     setInterval(updateStatusRealtime, 15000);
-
-    // JavaScript form submission
-    const formId = "homepage-contact-form";
-    const contactForm = document.getElementById(formId);
-    if (contactForm) {
-      const nameInput = document.querySelector(
-        "#" + formId + " #contact-form-name"
-      );
-      const emailInput = document.querySelector(
-        "#" + formId + " #contact-form-email"
-      );
-      const messageInput = document.querySelector(
-        "#" + formId + " #contact-form-message"
-      );
-
-      const validateEmail = (email) => {
-        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        return emailRegex.test(email);
-      };
-
-      // Error Alerts
-      const alertPlaceholder = document.querySelector(
-        "#" + formId + " #errorAlerts"
-      );
-      const appendAlert = (message) => {
-        alertPlaceholder.innerHTML = [
-          `<div class="alert alert-danger alert-dismissible" role="alert">`,
-          `<div>${message}</div>`,
-          '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
-          "</div>",
-        ].join("");
-      };
-
-      const validateForm = () => {
-        if (nameInput.value.trim() === "") {
-          appendAlert("Please enter your name");
-          return false;
-        }
-        if (
-          emailInput.value.trim() === "" ||
-          !validateEmail(emailInput.value)
-        ) {
-          appendAlert("Please enter a valid email address.");
-          return false;
-        }
-        if (messageInput.value.trim() === "") {
-          appendAlert("Please enter a message.");
-          return false;
-        }
-        return true;
-      };
-
-      contactForm.addEventListener("submit", function (event) {
-        // Prevent default form submission
-        event.preventDefault();
-
-        // Remove previous alerts
-        const alertDismiss = this.querySelectorAll(
-          "#" + formId + " #errorAlerts > *"
-        );
-        if (alertDismiss) {
-          alertDismiss.forEach((e) => {
-            e.remove();
-          });
-        }
-
-        if (!validateForm()) {
-          return false;
-        } else {
-          const receiveEmail = "carclubtire@gmail.com";
-          // Compose email message
-          const subject = `[Contact-Form] ${nameInput.value}`;
-          const body = `${messageInput.value}\n\n${nameInput.value}\n${emailInput.value}`;
-          // Open default email app and fill in appropriate fields
-          const mailtoUrl = `mailto:${encodeURIComponent(
-            receiveEmail
-          )}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-            body
-          )}`;
-          // Open Email client on click
-          window.open(mailtoUrl);
-        }
-      });
-    }
   }, []);
 
   return (
@@ -162,53 +70,41 @@ export default function Schedule() {
       <div className="container">
         <div className="heading-container text-primary">
           <h2 className="section-heading">
-            <i className="bx bxs-contact"></i> Contact Us
+            <i className="bx bxs-contact"></i> Contáctenos
           </h2>
         </div>
 
         <p className="section-copy my-4 text-center text-md-start">
-          Feel free to reach out to us at for any of your automotive needs.
-          Whether it's a tire change, wheel alignment, or any other auto repair
-          service, our expert technicians are here to assist you. Contact us
-          today to schedule an appointment and let us keep your vehicle running
-          smoothly and safely on the road.
+          No dude en comunicarse con nosotros para cualquiera de sus necesidades
+          automotrices. Ya sea un cambio de llantas, alineación de ruedas u otro
+          servicio de reparación de automóviles, nuestros técnicos expertos
+          están aquí para ayudarlo. Contáctenos hoy para programar una cita y
+          permítanos mantener su vehículo funcionando sin problemas y de manera
+          segura en la carretera.
         </p>
 
         <div className="d-lg-flex mb-4">
           <div className="col-lg-6 col-12 pe-lg-3">
             <ul className="contact-icon-list-items mb-5 fw-medium list-unstyled">
               <li className="contact-icon-list-item mb-4">
-                <a href="tel:+13865619732">
-                  <i className="bx bxs-phone-call"></i> +1-386-561-9732
+                <a href="tel:+573008245437">
+                  <i className="bx bxs-phone-call"></i> 300 824 5437
                 </a>
               </li>
               <li className="contact-icon-list-item mb-4">
-                <a href="tel:+15593631550">
-                  <i className="bx bxs-phone-call"></i> +1-559-363-1550
-                </a>
-              </li>
-              <li className="contact-icon-list-item mb-4">
-                <a
-                  href="https://wa.me/+15593631550"
-                  target="_blank"
-                  rel="nofollow"
-                >
-                  <i className="bx bxl-whatsapp"></i> +1-559-363-1550
-                </a>
-              </li>
-              <li className="contact-icon-list-item mb-4">
-                <a href="mailto:carclubtire@gmail.com">
-                  <i className="bx bxs-envelope"></i> info@carclubtire.com
+                <a href="mailto:carcienplanetarica@gmail.com">
+                  <i className="bx bxs-envelope"></i>{" "}
+                  carcienplanetarica@gmail.com
                 </a>
               </li>
               <li className="contact-icon-list-item">
                 <a
-                  href="https://maps.app.goo.gl/C56gKsbVXTg5ntiS8"
+                  href="https://maps.app.goo.gl/P3TUz9J553EhcQmm7"
                   target="_blank"
                   rel="nofollow"
                 >
-                  <i className="bx bxs-map-alt"></i> 1130 S Volusia Ave, Orange
-                  City, FL 32763
+                  <i className="bx bxs-map-alt"></i> Calle 26 N° 7 - 17, Barrio
+                  Santander, Planeta Rica, Córdoba, Colombia
                 </a>
               </li>
             </ul>
@@ -224,44 +120,44 @@ export default function Schedule() {
             </div>
 
             <div className="working-hours border-primary mb-4 mb-lg-0">
-              <table className="table table-striped table table-bordered">
+              <table className="table table-striped table-bordered">
                 <thead className="thead">
                   <tr>
                     <th className="text-primary">
-                      <i className="bx bxs-calendar-event"></i> Day
+                      <i className="bx bxs-calendar-event"></i> Día
                     </th>
                     <th className="text-primary">
-                      <i className="bx bxs-time"></i> Hours ( EST/UTC-5 )
+                      <i className="bx bxs-time"></i> Horario ( EST/UTC-5 )
                     </th>
                   </tr>
                 </thead>
-                <tbody className="table table-striped">
+                <tbody>
                   <tr>
-                    <td>Monday</td>
+                    <td>Lunes</td>
                     <td>08:00 AM - 07:00 PM</td>
                   </tr>
                   <tr>
-                    <td>Tuesday</td>
+                    <td>Martes</td>
                     <td>08:00 AM - 07:00 PM</td>
                   </tr>
                   <tr>
-                    <td>Wednesday</td>
+                    <td>Miércoles</td>
                     <td>08:00 AM - 07:00 PM</td>
                   </tr>
                   <tr>
-                    <td>Thursday</td>
+                    <td>Jueves</td>
                     <td>08:00 AM - 07:00 PM</td>
                   </tr>
                   <tr>
-                    <td>Friday</td>
+                    <td>Viernes</td>
                     <td>08:00 AM - 07:00 PM</td>
                   </tr>
                   <tr>
-                    <td>Saturday</td>
+                    <td>Sábado</td>
                     <td>08:00 AM - 07:00 PM</td>
                   </tr>
                   <tr>
-                    <td>Sunday</td>
+                    <td>Domingo</td>
                     <td>09:00 AM - 05:00 PM</td>
                   </tr>
                 </tbody>
@@ -277,14 +173,14 @@ export default function Schedule() {
                 method="post"
               >
                 <noscript className="wpforms-error-noscript">
-                  Please enable JavaScript in your browser to complete this
-                  form.
+                  Por favor habilite JavaScript en su navegador para completar
+                  este formulario.
                 </noscript>
                 <label
                   className="contact-form-field-label"
                   htmlFor="contact-form-name"
                 >
-                  <i className="bx bx-user"></i> Name:
+                  <i className="bx bx-user"></i> Nombre:
                   <span className="required-label text-danger">*</span>
                 </label>
                 <input
@@ -292,14 +188,14 @@ export default function Schedule() {
                   id="contact-form-name"
                   className="contact-form-name"
                   name="contact-form-name"
-                  placeholder="Full name"
+                  placeholder="Nombre completo"
                   required
                 />
                 <label
                   className="contact-form-field-label"
                   htmlFor="contact-form-email"
                 >
-                  <i className="bx bx-envelope"></i> Email:
+                  <i className="bx bx-envelope"></i> Correo electrónico:
                   <span className="required-label">*</span>
                 </label>
                 <input
@@ -307,14 +203,14 @@ export default function Schedule() {
                   id="contact-form-email"
                   className="contact-form-email"
                   name="contact-form-email"
-                  placeholder="Email address"
+                  placeholder="Correo electrónico"
                   required
                 />
                 <label
                   className="contact-form-field-label"
                   htmlFor="contact-form-number"
                 >
-                  <i className="bx bx-phone"></i> Contact Number:
+                  <i className="bx bx-phone"></i> Número de contacto:
                 </label>
                 <input
                   type="tel"
@@ -329,27 +225,27 @@ export default function Schedule() {
                   className="contact-form-field-label"
                   htmlFor="contact-form-vehicle"
                 >
-                  <i className="bx bx-car"></i> Vehicle Make and Model:
+                  <i className="bx bx-car"></i> Marca y modelo del vehículo:
                 </label>
                 <input
                   type="text"
                   id="contact-form-vehicle"
                   className="contact-form-vehicle"
                   name="contact-form-vehicle"
-                  placeholder="Company name and model"
+                  placeholder="Marca y modelo del vehículo"
                 />
                 <label
                   className="contact-form-field-label"
                   htmlFor="contact-form-message"
                 >
-                  <i className="bx bx-message-dots"></i> Message:
+                  <i className="bx bx-message-dots"></i> Mensaje:
                   <span className="required-label">*</span>
                 </label>
                 <textarea
                   id="contact-form-message"
                   className="contact-form-message"
                   name="contact-form-message"
-                  placeholder="Your message here.."
+                  placeholder="Su mensaje aquí..."
                   rows="5"
                   required
                 ></textarea>
@@ -359,11 +255,12 @@ export default function Schedule() {
                   name="form-submit-button"
                   id="form-submit-button"
                   className="form-submit-button btn rounded-pill btn-primary"
-                  data-submit-text="Send us an E-Mail"
+                  data-submit-text="Envíenos un correo electrónico"
                   aria-live="assertive"
                   value="form-submit-button"
                 >
-                  <i className="bx bxs-envelope"></i> Send us an E-Mail
+                  <i className="bx bxs-envelope"></i> Envíenos un correo
+                  electrónico
                 </button>
               </form>
             </div>
