@@ -1,4 +1,15 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 export default function Header() {
+  const router = useRouter();
+
+  const handleScheduleClick = (e) => {
+    e.preventDefault();
+    router.push("/schedule"); // Reemplaza '/schedule' con la ruta a la que deseas redirigir
+  };
+
   return (
     <header id="header" className="site-header">
       <div className="container">
@@ -57,7 +68,7 @@ export default function Header() {
                 </a>
               </li>
               <li className="menu-item">
-                <a className="nav-link" href="#schedule">
+                <a className="nav-link" href="#" onClick={handleScheduleClick}>
                   <i className="bx bxs-contact"></i> Agenda tu cita!
                 </a>
               </li>
