@@ -78,7 +78,9 @@ export default function Footer() {
                   href="https://saqibtech.com"
                   target="_blank"
                   title="Saqib Islam - UI/UX Desginer & Full Stack Developer"
-                ></a>
+                >
+                  Saqib Islam
+                </a>
               </p>
             </div>
           </div>

@@ -1,119 +1,67 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Header() {
   const router = useRouter();
-  const [isHome, setIsHome] = useState(false);
-
-  useEffect(() => {
-    setIsHome(router.pathname === "/");
-  }, [router.pathname]);
+  const pathname = usePathname();
 
   const handleScheduleClick = (e) => {
     e.preventDefault();
-    router.push("/schedule"); // Reemplaza '/schedule' con la ruta a la que deseas redirigir
+    router.push("/schedule");
   };
 
   useEffect(() => {
-    // Navigation
-    /* ## Set Mobile Navigation stuff
-    --------------------------------------------- */
-    // selecting the element
     const menuButton = document.querySelector(".menu-toggle");
     const navigation = document.querySelector("nav.nav-primary");
 
-    // Functionality for main menu-toggle button
-    menuButton.addEventListener("click", function () {
-      // Show site navigation
-      navigation.classList.toggle("show");
+    const toggleMenu = () => {
+      navigation?.classList.toggle("show");
+      menuButton?.classList.toggle("activated");
+      menuButton?.classList.toggle("bx-x");
 
-      // toggle activated class
-      menuButton.classList.toggle("activated");
-      menuButton.classList.toggle("bx-x");
+      const isExpanded = menuButton?.getAttribute("aria-expanded") === "true";
+      menuButton?.setAttribute("aria-expanded", (!isExpanded).toString());
+      menuButton?.setAttribute("aria-pressed", (!isExpanded).toString());
+    };
 
-      // toggle attrs
-      if (menuButton.getAttribute("aria-expanded") === "true") {
-        menuButton.setAttribute("aria-expanded", "false");
-      } else {
-        menuButton.setAttribute("aria-expanded", "true");
-      }
+    menuButton?.addEventListener("click", toggleMenu);
 
-      if (menuButton.getAttribute("aria-pressed") === "true") {
-        menuButton.setAttribute("aria-pressed", "false");
-      } else {
-        menuButton.setAttribute("aria-pressed", "true");
-      }
-    });
+    const menuLinks = document.querySelectorAll(".primary-menu .menu-item a");
+    menuLinks.forEach((link) => {
+      link.addEventListener("click", function (e) {
+        e.preventDefault();
+        const href = link.getAttribute("href");
 
-    // Collapse menu on click
-    const menuLinks = document.querySelectorAll(
-      ".primary-menu .menu-item a, a.top-link, .site-title a"
-    );
-    // Functionality of individual links
-    menuLinks.forEach((eachLink) => {
-      eachLink.addEventListener("click", function () {
-        // Hide Main Navigation on click
-        navigation.classList.remove("show");
+        if (navigation?.classList.contains("show")) {
+          toggleMenu();
+        }
 
-        // remove activated class and attrs from menu-toggle button
-        menuButton.classList.remove("activated");
-        menuButton.classList.remove("bx-x");
-        menuButton.setAttribute("aria-expanded", "false");
-        menuButton.setAttribute("aria-pressed", "false");
-      });
-    });
-
-    /* ## Add dark class to the header and top link
-    --------------------------------------------- */
-    window.addEventListener("scroll", () => {
-      if (window.scrollY >= 100) {
-        document.querySelector("body").classList.add("dark");
-      } else {
-        document.querySelector("body").classList.remove("dark");
-      }
-    });
-
-    /* ## SETUP SCROLL SPY
-    --------------------------------------------- */
-    let menuSection = document.querySelectorAll(".nav-primary li.menu-item a");
-    // for clickable event
-    menuSection.forEach((v) => {
-      v.onclick = () => {
-        setTimeout(() => {
-          menuSection.forEach((j) => j.classList.remove("active"));
-          v.classList.add("active");
-        }, 300);
-      };
-    });
-    // for window scrolldown event
-    window.onscroll = () => {
-      let mainSection = document.querySelectorAll(
-        "main.entry-content section.section"
-      );
-
-      mainSection.forEach((v, i) => {
-        let rect = v.getBoundingClientRect().y;
-
-        if (rect < window.innerHeight - window.innerHeight + 100) {
-          /* calculate till section reaches to top */
-          menuSection.forEach((v) => v.classList.remove("active"));
-          menuSection[i].classList.add("active");
+        if (href.startsWith("#")) {
+          if (pathname === "/") {
+            const targetElement = document.querySelector(href);
+            if (targetElement) {
+              targetElement.scrollIntoView({ behavior: "smooth" });
+            }
+          } else {
+            router.push(`/${href}`);
+          }
+        } else {
+          router.push(href);
         }
       });
+    });
+
+    return () => {
+      menuButton?.removeEventListener("click", toggleMenu);
     };
-  }, []);
+  }, [router, pathname]);
 
   return (
-    <header
-      id="header"
-      className={`site-header ${!isHome ? "scrolled-header" : ""}`}
-      style={isHome ? { backgroundColor: "transparent" } : {}}
-    >
+    <header id="header" className="site-header">
       <div className="container">
         <div className="nav-flex">
-          {/*  SITE LOGO  */}
           <div className="title-area">
             <div className="site-title" itemProp="headline">
               <a href="/">
@@ -125,14 +73,9 @@ export default function Header() {
               Descubra los mejores servicios de reparación de automóviles y
               cambio de aceites en Planeta Rica, Cordoba, en CARCIENPLANETARICA.
               Nuestros técnicos expertos brindan soluciones de primer nivel para
-              todas sus necesidades automotrices. Desde el cambio de aceite y
-              filtros hasta mecánica especializada, confíe en nosotros para
-              obtener servicios confiables y certificados. Programe su cita hoy
-              para disfrutar de un viaje más tranquilo y una satisfacción del
-              cliente excepcional.
+              todas sus necesidades automotrices.
             </div>
           </div>
-          {/* Primary Navigation */}
           <button
             className="menu-toggle icon-menu bx bx-menu"
             aria-label="Navigation Menu Button"
@@ -146,7 +89,7 @@ export default function Header() {
             itemType="https://schema.org/SiteNavigationElement"
           >
             <ul id="primary-menu" className="primary-menu list-unstyled">
-              <li className="menu-item active">
+              <li className="menu-item">
                 <a className="nav-link" href="/">
                   <i className="bx bxs-home"></i> Home
                 </a>
