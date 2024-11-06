@@ -31,23 +31,23 @@ export default function Schedule() {
         (dayOfWeek !== "domingo" && hours >= 8 && hours < 19)
       ) {
         outputTime =
-          '<span class="open text-success fw-bold">Abierto</span> ven a visitarnos';
+          '<span class="open text-success fw-bold">Abiertos</span> ven a visitarnos';
       } else if (
         (dayOfWeek === "domingo" && hours >= 17 && hours < 24) ||
         (dayOfWeek !== "domingo" && hours >= 19 && hours < 24)
       ) {
         outputTime =
-          '<span class="closed text-danger fw-bold">Cerrado</span> en este momento, nos vemos mañana. &#128578;';
+          '<span class="closed text-danger fw-bold">Cerrados</span> en este momento, nos vemos mañana. &#128578;';
       } else if (
         hours >= 0 &&
         (dayOfWeek === "domingo" ? hours < 8 : hours < 9)
       ) {
         if (dayOfWeek === "domingo" && hours < 8) {
           outputTime =
-            '<span class="closed text-danger fw-bold">Cerrado</span> en este momento, nos vemos a las 08:00 AM. &#128564;';
+            '<span class="closed text-danger fw-bold">Cerrados</span> en este momento, nos vemos a las 08:00 AM. &#128564;';
         } else if (dayOfWeek !== "domingo" && hours < 9) {
           outputTime =
-            '<span class="closed text-danger fw-bold">Cerrado</span> en este momento, nos vemos a las 09:00 AM. &#128564;';
+            '<span class="closed text-danger fw-bold">Cerrados</span> en este momento, nos vemos a las 09:00 AM. &#128564;';
         }
       }
 

@@ -70,7 +70,7 @@ export default function Footer() {
               <p className="m-0">
                 Copyright &copy; <span id="year">2023</span>
               </p>
-              <p>Car Club Tire &amp; Auto Repair Service</p>
+              <p>CarCien &amp; Taller mecánico</p>
               <p className="powered m-0">
                 Designed by
                 <a
@@ -78,9 +78,7 @@ export default function Footer() {
                   href="https://saqibtech.com"
                   target="_blank"
                   title="Saqib Islam - UI/UX Desginer & Full Stack Developer"
-                >
-                  Saaqi
-                </a>
+                ></a>
               </p>
             </div>
           </div>
