@@ -71,7 +71,7 @@ export default function Schedule() {
   return (
     <section
       id="contactus"
-      className="contactus h-full section"
+      className="flex-grow container mx-auto py-5"
       style={{ paddingTop: "40px" }}
     >
       <div className="container">
