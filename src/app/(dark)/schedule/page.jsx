@@ -55,16 +55,23 @@ export default function Schedule() {
     }
 
     function updateStatusRealtime() {
-      document.getElementById("storestatus").innerHTML = storeStatus();
+      const storeStatusElement = document.getElementById("storestatus");
+      if (storeStatusElement) {
+        storeStatusElement.innerHTML = storeStatus();
+      }
     }
+
     updateStatusRealtime();
-    setInterval(updateStatusRealtime, 15000);
+    const intervalId = setInterval(updateStatusRealtime, 15000);
+
+    // Limpiar el intervalo cuando el componente se desmonte
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
     <section
       id="contactus"
-      className="contactus section"
+      className="contactus h-full section"
       style={{ paddingTop: "40px" }}
     >
       <div className="container">

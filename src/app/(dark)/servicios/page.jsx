@@ -119,7 +119,7 @@ export default function ServicesPage() {
   }, []);
 
   return (
-    <section id="deals" className="deals section py-4 min-vh-100 d-flex">
+    <section id="deals" className="deals section h-full  d-flex">
       <div className="container my-3">
         <div className="heading-container text-primary">
           <h2 className="section-heading">

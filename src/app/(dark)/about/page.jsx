@@ -141,7 +141,7 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <section id="about" className="about section py-4 min-vh-100 d-flex">
+    <section id="about" className="about section h-full py-4 d-flex">
       <div className="container my-3">
         <div className="heading-container text-primary">
           <h2 className="section-heading">
