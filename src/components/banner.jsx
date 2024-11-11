@@ -1,4 +1,15 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 export default function Banner() {
+  const router = useRouter();
+
+  const handleScheduleClick = (e) => {
+    e.preventDefault();
+    router.push("/schedule");
+  };
+
   return (
     <section id="home" className="font-sans hero section">
       <div className="background-overlay"></div>
@@ -31,6 +42,7 @@ export default function Banner() {
               <a
                 className="p-3 btn rounded-pill btn-secondary fw-bold"
                 href="#schedule"
+                onClick={handleScheduleClick}
               >
                 <i className="bx bxs-book"></i> Agenda tu cita
               </a>

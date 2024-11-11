@@ -22,9 +22,18 @@ export default function Header() {
     router.push("/about");
   };
 
+  const handleWhyUsClick = (e) => {
+    e.preventDefault();
+    router.push("/whyus");
+  };
+
   const handleScheduleClick = (e) => {
     e.preventDefault();
     router.push("/schedule");
+  };
+  const handleLoginClick = (e) => {
+    e.preventDefault();
+    router.push("/signin");
   };
 
   useEffect(() => {
@@ -105,7 +114,7 @@ export default function Header() {
           >
             <ul id="primary-menu" className="primary-menu list-unstyled">
               <li className="menu-item">
-                <a className="nav-link" href="#" onClick={handleHomeClick}>
+                <a className="nav-link" href="/" onClick={handleHomeClick}>
                   <i className="bx bxs-home"></i> Home
                 </a>
               </li>
@@ -120,7 +129,7 @@ export default function Header() {
                 </a>
               </li>
               <li className="menu-item">
-                <a className="nav-link" href="#whyus">
+                <a className="nav-link" href="#" onClick={handleWhyUsClick}>
                   <i className="bx bxs-wrench"></i> Por qué nosotros
                 </a>
               </li>
@@ -130,7 +139,7 @@ export default function Header() {
                 </a>
               </li>
               <li className="menu-item">
-                <a className="nav-link" href="/signin">
+                <a className="nav-link" href="#" onClick={handleLoginClick}>
                   <i className="bx bxs-user"></i> Login
                 </a>
               </li>
