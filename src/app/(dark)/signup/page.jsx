@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Footer from "@/components/footer";
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -121,7 +120,6 @@ export default function Signup() {
           </form>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }
