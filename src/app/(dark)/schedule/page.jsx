@@ -65,7 +65,7 @@ export default function Schedule() {
     <section
       id="contactus"
       className="contactus section"
-      style={{ paddingTop: "170px" }}
+      style={{ paddingTop: "40px" }}
     >
       <div className="container">
         <div className="heading-container text-primary">

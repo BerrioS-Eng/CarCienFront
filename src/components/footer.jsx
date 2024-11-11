@@ -1,8 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export default function Footer() {
+  const pathname = usePathname();
+  const display = pathname == "/" ? "hidden" : "";
+
   useEffect(() => {
     // Show current year
     document.getElementById("year").innerHTML = new Date().getFullYear();
@@ -10,7 +14,7 @@ export default function Footer() {
 
   return (
     <footer
-      className="site-footer bg-primary text-bg-primary py-1"
+      className={display + " site-footer bg-primary text-bg-primary py-1"}
       itemType="https://schema.org/WPFooter"
       itemScope="itemscope"
     >
@@ -71,17 +75,7 @@ export default function Footer() {
                 Copyright &copy; <span id="year">2023</span>
               </p>
               <p>CarCien &amp; Taller mecánico</p>
-              <p className="powered m-0">
-                Designed by
-                <a
-                  className="text-bg-primary text-decoration-underline"
-                  href="https://saqibtech.com"
-                  target="_blank"
-                  title="Saqib Islam - UI/UX Desginer & Full Stack Developer"
-                >
-                  Saqib Islam
-                </a>
-              </p>
+              
             </div>
           </div>
         </div>

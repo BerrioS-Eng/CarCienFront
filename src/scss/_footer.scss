@@ -1,3 +1,9 @@
-.site-footer {
+.hidden {
   display: none;
+}
+
+.site-footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
 }

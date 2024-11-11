@@ -1,15 +1,26 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 export default function Header() {
+  const pathname = usePathname();
+
+  const myClass = pathname == "/" ? "site-header" : "dark";
+
   return (
-    <header id="header" className="site-header">
+    <header id="header" className={myClass}>
+      {/* <header id="header" className="site-header"> */}
+
       <div className="container">
         <div className="nav-flex">
           {/*  SITE LOGO  */}
           <div className="title-area">
             <div className="site-title" itemProp="headline">
-              <a href="/">
+              <Link href="/">
                 Los mejores servicios de reparación de automóviles y cambio de
                 aceite en Planeta Rica, Cordoba | CARCIENPLANETARICA
-              </a>
+              </Link>
             </div>
             <div className="site-description" itemProp="description">
               Descubra los mejores servicios de reparación de automóviles y
@@ -33,39 +44,39 @@ export default function Header() {
           >
             <ul id="primary-menu" className="primary-menu list-unstyled">
               <li className="menu-item active">
-                <a className="nav-link" href="/">
+                <Link className="nav-link" href="/">
                   <i className="bx bxs-home"></i> Home
-                </a>
+                </Link>
               </li>
               <li className="menu-item">
-                <a className="nav-link" href="/servicios">
+                <Link className="nav-link" href="/servicios">
                   <i className="bx bxs-gift"></i> Servicios
-                </a>
+                </Link>
               </li>
               <li className="menu-item">
-                <a className="nav-link" href="/about">
+                <Link className="nav-link" href="/about">
                   <i className="bx bxs-info-circle"></i> Acerca de
-                </a>
+                </Link>
               </li>
               <li className="menu-item">
-                <a className="nav-link" href="/whyus">
+                <Link className="nav-link" href="/whyus">
                   <i className="bx bxs-wrench"></i> Por qué nosotros
-                </a>
+                </Link>
               </li>
               <li className="menu-item">
-                <a className="nav-link" href="/schedule">
+                <Link className="nav-link" href="/schedule">
                   <i className="bx bxs-contact"></i> Agenda tu cita!
-                </a>
+                </Link>
               </li>
               <li className="menu-item">
-                <a className="nav-link" href="/signin">
+                <Link className="nav-link" href="/signin">
                   <i className="bx bxs-user"></i> Login
-                </a>
+                </Link>
               </li>
               <li className="menu-item">
-                <a className="nav-link" href="/signup">
+                <Link className="nav-link" href="/signup">
                   <i className="bx bxs-user-plus"></i> Registro
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
