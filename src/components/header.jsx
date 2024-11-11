@@ -7,6 +7,16 @@ export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
 
+  const handleHomeClick = (e) => {
+    e.preventDefault();
+    router.push("/");
+  };
+
+  const handleServicesClick = (e) => {
+    e.preventDefault();
+    router.push("/servicios");
+  };
+
   const handleScheduleClick = (e) => {
     e.preventDefault();
     router.push("/schedule");
@@ -64,7 +74,7 @@ export default function Header() {
         <div className="nav-flex">
           <div className="title-area">
             <div className="site-title" itemProp="headline">
-              <a href="/">
+              <a href="/" onClick={handleHomeClick}>
                 Los mejores servicios de reparación de automóviles y cambio de
                 aceite en Planeta Rica, Cordoba | CARCIENPLANETARICA
               </a>
@@ -90,12 +100,12 @@ export default function Header() {
           >
             <ul id="primary-menu" className="primary-menu list-unstyled">
               <li className="menu-item">
-                <a className="nav-link" href="/">
+                <a className="nav-link" href="/" onClick={handleHomeClick}>
                   <i className="bx bxs-home"></i> Home
                 </a>
               </li>
               <li className="menu-item">
-                <a className="nav-link" href="#services">
+                <a className="nav-link" href="#" onClick={handleServicesClick}>
                   <i className="bx bxs-gift"></i> Servicios
                 </a>
               </li>

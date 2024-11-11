@@ -22,7 +22,7 @@ export default function MainLayout({ children }) {
       <body>
         <Header />
         <main>{children}</main>
-        <Footer />
+        <Footer className="mt-auto" />
       </body>
     </html>
   );

@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Footer from "@/components/footer"; // Asegúrate de importar tu componente Footer
+import Footer from "@/components/footer";
 
 export default function Signin() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -35,7 +35,7 @@ export default function Signin() {
 
   return (
     <div className="flex flex-col min-h-screen justify-between">
-      <main className="flex-grow flex items-center justify-center py-8">
+      <main className="flex-grow flex items-center justify-center py-5">
         <div className="max-w-sm mx-auto bg-white p-6 rounded-lg shadow-md space-y-4">
           {error && <p style={{ color: "red" }}>{error}</p>}
           <h2 className="text-2xl font-bold text-gray-800 text-center">
