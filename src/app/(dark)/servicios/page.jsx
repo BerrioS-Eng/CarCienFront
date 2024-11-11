@@ -8,9 +8,6 @@ import "@glidejs/glide/dist/css/glide.theme.min.css";
 const alertBoxesData = [
   { body: "Estamos abiertos los 7 días de la semana." },
   { body: "Aceptamos citas y visitas sin cita previa." },
-  {
-    body: "Descuentos especiales para veteranos y personal militar, estudiantes y personas mayores.",
-  },
 ];
 
 const dealsSlidesData = [

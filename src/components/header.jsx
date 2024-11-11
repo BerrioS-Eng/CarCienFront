@@ -17,6 +17,11 @@ export default function Header() {
     router.push("/servicios");
   };
 
+  const handleAboutClick = (e) => {
+    e.preventDefault();
+    router.push("/about");
+  };
+
   const handleScheduleClick = (e) => {
     e.preventDefault();
     router.push("/schedule");
@@ -100,7 +105,7 @@ export default function Header() {
           >
             <ul id="primary-menu" className="primary-menu list-unstyled">
               <li className="menu-item">
-                <a className="nav-link" href="/" onClick={handleHomeClick}>
+                <a className="nav-link" href="#" onClick={handleHomeClick}>
                   <i className="bx bxs-home"></i> Home
                 </a>
               </li>
@@ -110,7 +115,7 @@ export default function Header() {
                 </a>
               </li>
               <li className="menu-item">
-                <a className="nav-link" href="#about">
+                <a className="nav-link" href="#" onClick={handleAboutClick}>
                   <i className="bx bxs-info-circle"></i> Acerca de
                 </a>
               </li>
