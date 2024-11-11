@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Footer from "@/components/footer";
 
 export default function Signup() {
   const [formData, setFormData] = useState({
@@ -61,67 +62,66 @@ export default function Signup() {
   };
 
   return (
-    <div>
-      <h1>Sign Up</h1>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <form
-        onSubmit={handleSubmit}
-        className="max-w-md mx-auto bg-white p-8 rounded-lg shadow-md space-y-6"
-      >
-        <h2 className="text-2xl font-bold text-gray-800 text-center">
-          Sign Up
-        </h2>
-
-        <div className="space-y-4">
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            onChange={handleInputChange}
-            required
-            className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            onChange={handleInputChange}
-            required
-            className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <input
-            type="password"
-            name="verifiedPassword"
-            placeholder="Verify Password"
-            onChange={handleInputChange}
-            required
-            className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            onChange={handleInputChange}
-            required
-            className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <input
-            type="text"
-            name="contact"
-            placeholder="Contact"
-            onChange={handleInputChange}
-            required
-            className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
+    <div className="flex flex-col min-h-screen justify-between">
+      <main className="flex-grow flex items-center justify-center py-5">
+        <div className="max-w-sm mx-auto bg-white p-6 rounded-lg shadow-md space-y-4">
+          {error && <p style={{ color: "red" }}>{error}</p>}
+          <h2 className="text-2xl font-bold text-gray-800 text-center">
+            Registro
+          </h2>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-4">
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                onChange={handleInputChange}
+                required
+                className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <input
+                type="password"
+                name="password"
+                placeholder="Password"
+                onChange={handleInputChange}
+                required
+                className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <input
+                type="password"
+                name="verifiedPassword"
+                placeholder="Verify Password"
+                onChange={handleInputChange}
+                required
+                className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <input
+                type="text"
+                name="username"
+                placeholder="Username"
+                onChange={handleInputChange}
+                required
+                className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <input
+                type="text"
+                name="contact"
+                placeholder="Contact"
+                onChange={handleInputChange}
+                required
+                className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              Sign Up
+            </button>
+          </form>
         </div>
-
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          Sign Up
-        </button>
-      </form>
+      </main>
+      <Footer />
     </div>
   );
 }

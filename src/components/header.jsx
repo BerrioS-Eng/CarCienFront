@@ -31,9 +31,15 @@ export default function Header() {
     e.preventDefault();
     router.push("/schedule");
   };
+
   const handleLoginClick = (e) => {
     e.preventDefault();
     router.push("/signin");
+  };
+
+  const handleSignupClick = (e) => {
+    e.preventDefault();
+    router.push("/signup");
   };
 
   useEffect(() => {
@@ -141,6 +147,11 @@ export default function Header() {
               <li className="menu-item">
                 <a className="nav-link" href="#" onClick={handleLoginClick}>
                   <i className="bx bxs-user"></i> Login
+                </a>
+              </li>
+              <li className="menu-item">
+                <a className="nav-link" href="#" onClick={handleSignupClick}>
+                  <i className="bx bxs-user-plus"></i> Registro
                 </a>
               </li>
             </ul>

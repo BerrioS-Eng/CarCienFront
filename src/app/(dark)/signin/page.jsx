@@ -39,7 +39,7 @@ export default function Signin() {
         <div className="max-w-sm mx-auto bg-white p-6 rounded-lg shadow-md space-y-4">
           {error && <p style={{ color: "red" }}>{error}</p>}
           <h2 className="text-2xl font-bold text-gray-800 text-center">
-            Sign In
+            Ingresar
           </h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-4">
