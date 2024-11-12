@@ -9,8 +9,7 @@ export default function Header() {
   const myClass = pathname == "/" ? "site-header" : "dark";
 
   return (
-    <header id="header" className={myClass}>
-      {/* <header id="header" className="site-header"> */}
+    <header id="header" className={myClass + " fixed top-0 left-0 w-full z-10"}>
 
       <div className="container">
         <div className="nav-flex">
