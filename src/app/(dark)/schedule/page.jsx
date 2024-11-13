@@ -69,12 +69,8 @@ export default function Schedule() {
   }, []);
 
   return (
-    <section
-      id="contactus"
-      className="flex-grow container mx-auto py-5"
-      style={{ paddingTop: "40px" }}
-    >
-      <div className="container">
+    <section id="contactus" className="section flex-grow bg-gray-100 p-4 mt-16">
+      <div className="container my-3">
         <div className="heading-container text-primary">
           <h2 className="section-heading">
             <i className="bx bxs-contact"></i> Contáctenos

@@ -61,7 +61,7 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex flex-col h-full justify-between">
+    <div className="flex flex-grow bg-gray-100 p-4 mt-16">
       <main className="flex-grow flex items-center justify-center py-5">
         <div className="max-w-sm mx-auto bg-white p-6 rounded-lg shadow-md space-y-4">
           {error && <p style={{ color: "red" }}>{error}</p>}

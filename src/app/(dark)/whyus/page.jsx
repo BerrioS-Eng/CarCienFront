@@ -139,7 +139,7 @@ export default function WhyUsPage() {
   }, []);
 
   return (
-    <section id="whyus" className="whyus flex-grow container mx-auto py-4">
+    <section id="whyus" className="section flex-grow bg-gray-100 p-4 mt-16">
       <div className="container my-3">
         <div className="heading-container text-primary">
           <h2 className="section-heading">

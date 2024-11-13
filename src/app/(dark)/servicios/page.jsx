@@ -119,7 +119,7 @@ export default function ServicesPage() {
   }, []);
 
   return (
-    <section id="deals" className="deals section h-full  d-flex">
+    <section id="deals" className="section flex-grow bg-gray-100 p-4 mt-16">
       <div className="container my-3">
         <div className="heading-container text-primary">
           <h2 className="section-heading">
