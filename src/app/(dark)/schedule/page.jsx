@@ -85,7 +85,6 @@ export default function Schedule() {
           permítanos mantener su vehículo funcionando sin problemas y de manera
           segura en la carretera.
         </p>
-
         <div className="d-lg-flex mb-4">
           <div className="col-lg-6 col-12 pe-lg-3">
             <ul className="contact-icon-list-items mb-5 fw-medium list-unstyled">

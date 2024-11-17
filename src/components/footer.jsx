@@ -28,7 +28,7 @@ export default function Footer() {
             <ul className="d-flex flex-wrap list-unstyled m-0 justify-content-around">
               <li>
                 <a
-                  href="https://facebook.com/carclubtire"
+                  href="https://www.instagram.com/carcienplanetarica/"
                   target="_blank"
                   rel="nofollow"
                   title="Facebook Page"
@@ -38,30 +38,33 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://wa.me/+15593631550"
+                  href="https://wa.me/+573008245437"
                   target="_blank"
                   rel="nofollow"
-                  title="WhatsApp Number"
+                  title="WhatsApp"
                 >
                   <i className="btn btn-info rounded-pill p-2 bx bxl-whatsapp"></i>
                 </a>
               </li>
               <li>
-                <a href="mailto:carclubtire@gmail.com" title="Email Us!">
+                <a
+                  href="mailto:carcienplanetarica@gmail.com"
+                  title="Envianos un Email!"
+                >
                   <i className="btn btn-info rounded-pill p-2 bx bxl-gmail"></i>
                 </a>
               </li>
               <li>
-                <a href="tel:+13865619732" title="Call Us!">
+                <a href="tel:+573008245437" title="LLamanos!">
                   <i className="btn btn-info rounded-pill p-2 bx bx-phone"></i>
                 </a>
               </li>
               <li>
                 <a
-                  href="https://maps.app.goo.gl/C56gKsbVXTg5ntiS8"
+                  href="https://maps.app.goo.gl/P3TUz9J553EhcQmm7"
                   target="_blank"
                   rel="nofollow"
-                  title="Find Us on Google Maps!"
+                  title="Encuentranos en Google Maps!"
                 >
                   <i className="btn btn-info rounded-pill p-2 bx bxs-map-alt"></i>
                 </a>
@@ -75,7 +78,6 @@ export default function Footer() {
                 Copyright &copy; <span id="year">2023</span>
               </p>
               <p>CarCien &amp; Taller mecánico</p>
-              
             </div>
           </div>
         </div>
