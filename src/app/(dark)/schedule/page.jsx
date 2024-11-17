@@ -1,8 +1,64 @@
 "use client";
 
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function Schedule() {
+  const [formData, setFormData] = useState({
+    nombre: "",
+    correo: "",
+    contacto: "",
+    vehiculo: "",
+    mensaje: "",
+  });
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  const handleInputChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      // const token = localStorage.getItem("token"); // Obtén el token de autenticación del almacenamiento local
+      // const res = await fetch("http://localhost:8000/api/appointment/create", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     Authorization: `Bearer ${token}`, // Envía el token en el encabezado de autorización
+      //   },
+      //   body: JSON.stringify(formData),
+      // });
+
+      const res = await fetch("http://localhost:8000/api/appointment/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        setSuccess("Cita creada exitosamente");
+        setError("");
+        setFormData({
+          nombre: "",
+          correo: "",
+          contacto: "",
+          vehiculo: "",
+          mensaje: "",
+        });
+      } else {
+        setError(data.message);
+        setSuccess("");
+      }
+    } catch (err) {
+      setError("Error creando la cita");
+      setSuccess("");
+    }
+  };
+
   useEffect(() => {
     function storeStatus() {
       const timeZone = "America/Bogota";
@@ -173,11 +229,14 @@ export default function Schedule() {
                 id="homepage-contact-form"
                 className="homepage-contact-form"
                 method="post"
+                onSubmit={handleSubmit}
               >
                 <noscript className="wpforms-error-noscript">
                   Por favor habilite JavaScript en su navegador para completar
                   este formulario.
                 </noscript>
+                {error && <p style={{ color: "red" }}>{error}</p>}
+                {success && <p style={{ color: "green" }}>{success}</p>}
                 <label
                   className="contact-form-field-label"
                   htmlFor="contact-form-name"
@@ -189,8 +248,10 @@ export default function Schedule() {
                   type="text"
                   id="contact-form-name"
                   className="contact-form-name"
-                  name="contact-form-name"
+                  name="nombre"
                   placeholder="Nombre completo"
+                  value={formData.nombre}
+                  onChange={handleInputChange}
                   required
                 />
                 <label
@@ -204,8 +265,10 @@ export default function Schedule() {
                   type="email"
                   id="contact-form-email"
                   className="contact-form-email"
-                  name="contact-form-email"
+                  name="correo"
                   placeholder="Correo electrónico"
+                  value={formData.correo}
+                  onChange={handleInputChange}
                   required
                 />
                 <label
@@ -218,10 +281,12 @@ export default function Schedule() {
                   type="tel"
                   id="contact-form-number"
                   className="contact-form-number"
+                  name="contacto"
                   pattern="[0-9]{10}"
                   inputMode="numeric"
                   placeholder="XXXXXXXXXX"
-                  name="contact-form-number"
+                  value={formData.contacto}
+                  onChange={handleInputChange}
                 />
                 <label
                   className="contact-form-field-label"
@@ -233,8 +298,10 @@ export default function Schedule() {
                   type="text"
                   id="contact-form-vehicle"
                   className="contact-form-vehicle"
-                  name="contact-form-vehicle"
+                  name="vehiculo"
                   placeholder="Marca y modelo del vehículo"
+                  value={formData.vehiculo}
+                  onChange={handleInputChange}
                 />
                 <label
                   className="contact-form-field-label"
@@ -246,9 +313,11 @@ export default function Schedule() {
                 <textarea
                   id="contact-form-message"
                   className="contact-form-message"
-                  name="contact-form-message"
+                  name="mensaje"
                   placeholder="Su mensaje aquí..."
                   rows="5"
+                  value={formData.mensaje}
+                  onChange={handleInputChange}
                   required
                 ></textarea>
                 <div id="errorAlerts"></div>
