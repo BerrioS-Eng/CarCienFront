@@ -43,7 +43,7 @@ export default function Signup() {
     }
 
     try {
-      const res = await fetch("/api/signup", {
+      const res = await fetch("http://localhost:8000/api/auth/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -51,11 +51,13 @@ export default function Signup() {
 
       const data = await res.json();
       if (data.success) {
-        router.push("/");
+        alert("Registro exitoso");
+        router.push("/signin");
       } else {
         setError(data.message);
       }
     } catch (err) {
+      console.error(err);
       setError("Error signing up");
     }
   };
