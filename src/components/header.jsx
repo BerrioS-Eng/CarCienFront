@@ -8,6 +8,27 @@ export default function Header() {
 
   const myClass = pathname == "/" ? "site-header" : "dark";
 
+  const setMobileNavigation = () => {
+    // Selecting the element
+    const menuButton = document.querySelector(".menu-toggle");
+    const navigation = document.querySelector("nav.nav-primary");
+
+    // Show site navigation
+    navigation.classList.toggle("show");
+
+    // // Toggle activated class
+    menuButton.classList.toggle("activated");
+    menuButton.classList.toggle("bx-x");
+  };
+
+  const collapseMenuOnClick = () => {
+    // Selecting the element
+    const navigation = document.querySelector("nav.nav-primary");
+
+    // Hide Main Navigation on click
+    navigation.classList.remove("show");
+  };
+
   return (
     <header id="header" className={myClass + " fixed top-0 left-0 w-full z-10"}>
 
@@ -34,6 +55,7 @@ export default function Header() {
             aria-label="Navigation Menu Button"
             aria-expanded="false"
             aria-pressed="false"
+            onClick={() => setMobileNavigation()}
           ></button>
           <nav
             className="nav-primary"
@@ -42,37 +64,40 @@ export default function Header() {
             itemType="https://schema.org/SiteNavigationElement"
           >
             <ul id="primary-menu" className="primary-menu list-unstyled">
-              <li className="menu-item active">
+              <li
+                className="menu-item active"
+                onClick={() => collapseMenuOnClick()}
+              >
                 <Link className="nav-link" href="/">
                   <i className="bx bxs-home"></i> Home
                 </Link>
               </li>
-              <li className="menu-item">
+              <li className="menu-item" onClick={() => collapseMenuOnClick()}>
                 <Link className="nav-link" href="/servicios">
                   <i className="bx bxs-gift"></i> Servicios
                 </Link>
               </li>
-              <li className="menu-item">
+              <li className="menu-item" onClick={() => collapseMenuOnClick()}>
                 <Link className="nav-link" href="/about">
                   <i className="bx bxs-info-circle"></i> Acerca de
                 </Link>
               </li>
-              <li className="menu-item">
+              <li className="menu-item" onClick={() => collapseMenuOnClick()}>
                 <Link className="nav-link" href="/whyus">
                   <i className="bx bxs-wrench"></i> Por qué nosotros
                 </Link>
               </li>
-              <li className="menu-item">
+              <li className="menu-item" onClick={() => collapseMenuOnClick()}>
                 <Link className="nav-link" href="/schedule">
                   <i className="bx bxs-contact"></i> Agenda tu cita!
                 </Link>
               </li>
-              <li className="menu-item">
+              <li className="menu-item" onClick={() => collapseMenuOnClick()}>
                 <Link className="nav-link" href="/signin">
                   <i className="bx bxs-user"></i> Login
                 </Link>
               </li>
-              <li className="menu-item">
+              <li className="menu-item" onClick={() => collapseMenuOnClick()}>
                 <Link className="nav-link" href="/signup">
                   <i className="bx bxs-user-plus"></i> Registro
                 </Link>
