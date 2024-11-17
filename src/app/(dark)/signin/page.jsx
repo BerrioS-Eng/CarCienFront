@@ -1,11 +1,14 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/auth.context";
 
 export default function Signin() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const router = useRouter();
+
+  let { setUser } = useAuth();
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -13,6 +16,7 @@ export default function Signin() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const res = await fetch("http://localhost:8000/api/auth/signin", {
         method: "POST",
@@ -23,6 +27,13 @@ export default function Signin() {
       const data = await res.json();
       if (data.success) {
         alert(data.message);
+
+        let user = { name: data.name, token: data.token };
+
+        setUser(user);
+
+        window.localStorage.setItem("userCar100", JSON.stringify(user));
+
         router.push("/"); // Redirigir al dashboard u otra página
       } else {
         setError(data.message);
