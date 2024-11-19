@@ -3,15 +3,20 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export default function Signout() {
+  let { user } = useAuth();
+
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   const handleLogout = async () => {
     setLoading(true);
     try {
-      const res = (await fetch('http://localhost:8000/api/auth/signout', { method: 'POST' }));
-      const data = await res.json()
-      alert(data.message);
+      // const res = (await fetch('http://localhost:8000/api/auth/signout', { method: 'POST' }));
+      // const data = await res.json()
+      // alert(data.message);
+
+      window.localStorage.removeItem("userCar100");
+      alert("Logged out successfully");
       router.push('/');
     } catch (error) {
       console.error('Error during logout:', error);
