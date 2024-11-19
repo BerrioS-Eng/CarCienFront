@@ -26,20 +26,21 @@ export default function Signin() {
 
       const data = await res.json();
       if (data.success) {
-        alert(data.message);
+        alert("Inicio de sesión exitoso");
 
         let user = { name: data.name, token: data.token };
 
         setUser(user);
 
         window.localStorage.setItem("userCar100", JSON.stringify(user));
+        window.localStorage.setItem("token", JSON.stringify(user.token));
 
         router.push("/"); // Redirigir al dashboard u otra página
       } else {
         setError(data.message);
       }
     } catch (err) {
-      setError("Error signing in");
+      setError("Error al iniciar sesión");
     }
   };
 
@@ -56,7 +57,7 @@ export default function Signin() {
               <input
                 type="email"
                 name="email"
-                placeholder="Email"
+                placeholder="Correo electrónico"
                 onChange={handleInputChange}
                 required
                 className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -64,7 +65,7 @@ export default function Signin() {
               <input
                 type="password"
                 name="password"
-                placeholder="Password"
+                placeholder="Contraseña"
                 onChange={handleInputChange}
                 required
                 className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -74,7 +75,7 @@ export default function Signin() {
               type="submit"
               className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              Sign In
+              Iniciar Sesión
             </button>
           </form>
         </div>

@@ -129,7 +129,7 @@ export default function Schedule() {
       <div className="container my-3">
         <div className="heading-container text-primary">
           <h2 className="section-heading">
-            <i className="bx bxs-contact"></i> Contáctenos
+            <i className="bx bxs-contact"></i> Agenda una cita
           </h2>
         </div>
 
@@ -307,7 +307,8 @@ export default function Schedule() {
                   className="contact-form-field-label"
                   htmlFor="contact-form-message"
                 >
-                  <i className="bx bx-message-dots"></i> Mensaje:
+                  <i className="bx bx-message-dots"></i> Detalles del servicio
+                  requerido y fecha preferida:
                   <span className="required-label">*</span>
                 </label>
                 <textarea
@@ -330,8 +331,7 @@ export default function Schedule() {
                   aria-live="assertive"
                   value="form-submit-button"
                 >
-                  <i className="bx bxs-envelope"></i> Envíenos un correo
-                  electrónico
+                  <i className="bx bxs-envelope"></i> Agendar cita
                 </button>
               </form>
             </div>

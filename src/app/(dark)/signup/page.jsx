@@ -20,18 +20,25 @@ export default function Signup() {
   const validateForm = () => {
     const { email, password, verifiedPassword, username, contact } = formData;
     if (!email.includes("@")) {
-      return "Email is not valid";
+      return "El correo electrónico no es válido";
     }
     if (password.length < 6) {
-      return "Password should be at least 6 characters";
+      return "La contraseña debe tener al menos 6 caracteres";
     }
     if (password !== verifiedPassword) {
-      return "Passwords do not match";
+      return "Las contraseñas no coinciden";
     }
     if (!username || !contact) {
-      return "Username and contact are required";
+      return "El nombre de usuario y el contacto son obligatorios";
     }
     return null;
+  };
+
+  const translateError = (message) => {
+    if (message.includes('"password" with value')) {
+      return "La contraseña debe tener al menos 8 caracteres, incluyendo una letra mayúscula, una letra minúscula y un número.";
+    }
+    return message;
   };
 
   const handleSubmit = async (e) => {
@@ -54,11 +61,11 @@ export default function Signup() {
         alert("Registro exitoso");
         router.push("/signin");
       } else {
-        setError(data.message);
+        setError(translateError(data.message));
       }
     } catch (err) {
       console.error(err);
-      setError("Error signing up");
+      setError("Error al registrarse");
     }
   };
 
@@ -75,7 +82,7 @@ export default function Signup() {
               <input
                 type="email"
                 name="email"
-                placeholder="Email"
+                placeholder="Correo electrónico"
                 onChange={handleInputChange}
                 required
                 className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -83,7 +90,7 @@ export default function Signup() {
               <input
                 type="password"
                 name="password"
-                placeholder="Password"
+                placeholder="Contraseña"
                 onChange={handleInputChange}
                 required
                 className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -91,7 +98,7 @@ export default function Signup() {
               <input
                 type="password"
                 name="verifiedPassword"
-                placeholder="Verify Password"
+                placeholder="Verificar Contraseña"
                 onChange={handleInputChange}
                 required
                 className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -99,7 +106,7 @@ export default function Signup() {
               <input
                 type="text"
                 name="username"
-                placeholder="Username"
+                placeholder="Nombre de usuario"
                 onChange={handleInputChange}
                 required
                 className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -107,7 +114,7 @@ export default function Signup() {
               <input
                 type="text"
                 name="contact"
-                placeholder="Contact"
+                placeholder="Contacto"
                 onChange={handleInputChange}
                 required
                 className="w-full px-4 py-2 border text-black border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -117,7 +124,7 @@ export default function Signup() {
               type="submit"
               className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              Sign Up
+              Registrarse
             </button>
           </form>
         </div>

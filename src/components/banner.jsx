@@ -32,10 +32,10 @@ export default function Banner() {
             <div className="home-phone-container">
               <a
                 className="home-phone fs-5 text-end fw-medium text-light"
-                href="tel:+573000000000"
+                href="tel:+57 300 824 54370"
               >
                 <i className="p-3-1 me-2 btn btn-lg btn-outline-light rounded-pill bx bxs-phone-call"></i>
-                (300)-000-0000
+                300 824 5437
               </a>
             </div>
             <div className="my-4">

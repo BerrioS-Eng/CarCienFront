@@ -123,7 +123,7 @@ export default function ServicesPage() {
       <div className="container my-3">
         <div className="heading-container text-primary">
           <h2 className="section-heading">
-            <i className="bx bxs-gift"></i> Ofertas por tiempo limitado
+            <i className="bx bxs-gift"></i> Nuestros servicios
           </h2>
         </div>
 
