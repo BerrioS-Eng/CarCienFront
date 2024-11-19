@@ -58,8 +58,8 @@ const MyItemsList = () => {
 
       <div className="absolute left-0 mt-2 hidden w-full bg-white text-gray-700 border border-gray-200 rounded-lg shadow-md group-hover:block group-focus-within:block">
         <Link href="/signout">
-          <div className="w-full px-4 py-2 text-left rounded-lg hover:bg-red-500 hover:text-white">
-            Logout
+          <div className="w-full px-4 py-2 text-center rounded-lg hover:bg-red-500 hover:text-white">
+            Cerrar sesión
           </div>
         </Link>
       </div>
